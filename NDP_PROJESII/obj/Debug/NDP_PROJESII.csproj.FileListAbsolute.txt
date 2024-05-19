@@ -1,0 +1,14 @@
+C:\Users\binad\source\repos\NDP_PROJESII\bin\Debug\NDP_PROJESII.exe.config
+C:\Users\binad\source\repos\NDP_PROJESII\bin\Debug\NDP_PROJESII.exe
+C:\Users\binad\source\repos\NDP_PROJESII\bin\Debug\NDP_PROJESII.pdb
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.csproj.AssemblyReference.cache
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.Form1.resources
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.Properties.Resources.resources
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.Randevular.resources
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.csproj.GenerateResource.cache
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.csproj.CoreCompileInputs.cache
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.exe
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.pdb
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.Calisanlar.resources
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.Hizmetler.resources
+C:\Users\binad\source\repos\NDP_PROJESII\obj\Debug\NDP_PROJESII.Musteriler.resources
