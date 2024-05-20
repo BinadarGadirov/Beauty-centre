@@ -1,4 +1,16 @@
-﻿using System;
+﻿/****************************************************************************
+**					SAKARYA ÜNİVERSİTESİ
+**				BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+**				    BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+**				   NESNEYE DAYALI PROGRAMLAMA DERSİ
+**					2023-2024 BAHAR DÖNEMİ
+**	
+**				ÖDEV NUMARASI..........: Proje 1
+**				ÖĞRENCİ ADI............: Binadar Gadirov
+**				ÖĞRENCİ NUMARASI.......: B221210561
+**                         DERSİN ALINDIĞI GRUP...: 1.B
+****************************************************************************/
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +24,7 @@ using static NDP_PROJESII.Hizmetler;
 
 namespace NDP_PROJESII
 {
+
     public partial class Hizmetler : Form
     {
         public Hizmetler()
@@ -67,7 +80,7 @@ namespace NDP_PROJESII
 
         private void hizmetGoruntule_Click(object sender, EventArgs e)
         {
-            string filePath = @"C:\Users\binad\Desktop\SAKIN AÇMA\ndpVERI.txt"; // Gerçek dosya yolunu kullanın
+            string filePath = @"C:\Users\binad\source\repos\NDP_PROJESII\Veriler\Hizmet.txt"; // Gerçek dosya yolunu kullanın
             List<Service> services = ReadServices(filePath);
             richTextBox1.Clear();
             foreach (Service service in services)
@@ -92,7 +105,7 @@ namespace NDP_PROJESII
             double price = double.Parse(hizmetFiyati.Text);
 
             Service newService = new Service(id, name, price);
-            string filePath = @"C:\Users\binad\Desktop\SAKIN AÇMA\ndpVERI.txt"; // Gerçek dosya yolunu kullanın
+            string filePath = @"C:\Users\binad\source\repos\NDP_PROJESII\Veriler\Hizmet.txt"; // Gerçek dosya yolunu kullanın
             AddService(filePath, newService);
 
             MessageBox.Show("Service successfully added.");
@@ -100,7 +113,7 @@ namespace NDP_PROJESII
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string dosyaYolu = @"C:\Users\binad\Desktop\SAKIN AÇMA\ndpVERI.txt"; // Dosya yolunu buraya ekleyin
+            string dosyaYolu = @"C:\Users\binad\source\repos\NDP_PROJESII\Veriler\Hizmet.txt"; // Dosya yolunu buraya ekleyin
             string silinecekIdStr = SilinecekID.Text.Trim();
 
             if (!int.TryParse(silinecekIdStr, out int silinecekId))
@@ -111,13 +124,39 @@ namespace NDP_PROJESII
 
             try
             {
-                List<Service> services = ReadServices(dosyaYolu);
-                Service serviceToRemove = services.FirstOrDefault(s => s.Id == silinecekId);
+                List<string> satirlar = File.ReadAllLines(dosyaYolu).ToList();
+                bool isHizmetlerSection = false;
+                bool silindi = false;
 
-                if (serviceToRemove != null)
+                for (int i = 0; i < satirlar.Count; i++)
                 {
-                    services.Remove(serviceToRemove);
-                    
+                    string satir = satirlar[i];
+                    if (satir.StartsWith("Hizmetler:"))
+                    {
+                        isHizmetlerSection = true;
+                        continue;
+                    }
+
+                    if (isHizmetlerSection && !string.IsNullOrWhiteSpace(satir))
+                    {
+                        string[] veri = satir.Split('-');
+                        if (veri.Length > 0 && int.TryParse(veri[0].Trim(), out int id) && id == silinecekId)
+                        {
+                            satirlar.RemoveAt(i);
+                            silindi = true;
+                            break;
+                        }
+                    }
+
+                    if (string.IsNullOrWhiteSpace(satir) && isHizmetlerSection)
+                    {
+                        break;
+                    }
+                }
+
+                if (silindi)
+                {
+                    File.WriteAllLines(dosyaYolu, satirlar);
                     MessageBox.Show("ID başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -130,12 +169,5 @@ namespace NDP_PROJESII
                 MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void MusteriSil(int silinecekId, string filePath)
-        {
-            var satirlar = File.ReadAllLines(filePath).ToList();
-            satirlar.RemoveAll(line => line.StartsWith(SilinecekID.ToString()));
-            File.WriteAllLines(filePath, satirlar.ToArray());
-        }
     }
 }
-

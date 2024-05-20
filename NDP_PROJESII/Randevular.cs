@@ -1,4 +1,22 @@
-﻿using System;
+﻿                                      /****************************************************************************
+                                      **					SAKARYA ÜNİVERSİTESİ
+                                      **				BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+                                      **				    BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+                                      **				   NESNEYE DAYALI PROGRAMLAMA DERSİ
+                                      **					2023-2024 BAHAR DÖNEMİ
+                                      **	
+                                      **				ÖDEV NUMARASI..........: Proje 1
+                                      **				ÖĞRENCİ ADI............: Binadar Gadirov
+                                      **				ÖĞRENCİ NUMARASI.......: B221210561
+                                      **                         DERSİN ALINDIĞI GRUP...: 1.B
+                                      ****************************************************************************/
+                                      
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +32,7 @@ namespace NDP_PROJESII
 {
     public partial class Randevular : Form
     {
-        private string dosyaYolu = @"C:\Users\binad\Desktop\SAKIN AÇMA\ndpVERI.txt";
+        private string dosyaYolu = @"C:\Users\binad\source\repos\NDP_PROJESII\Veriler\Randevular.txt";
         public Randevular()
         {
             InitializeComponent();
@@ -104,7 +122,74 @@ namespace NDP_PROJESII
 
         private void randevuEkle_Click(object sender, EventArgs e)
         {
+            int randevuId = int.Parse(txtRandevuId.Text);
+            int musteriId = int.Parse(txtMusteriId.Text);
+            int servisId = int.Parse(txtServisId.Text);
+            int calisanId = int.Parse(txtCalisanId.Text);
+            DateTime randevuTarihi = DateTime.ParseExact(txtRandevuTarihi.Text, "dd/MM/yyyy HH", CultureInfo.InvariantCulture);
 
+            Randevu yeniRandevu = new Randevu(randevuId, musteriId, servisId, calisanId, randevuTarihi);
+            string dosyaYolu = @"C:\Users\binad\source\repos\NDP_PROJESII\Veriler\Randevular.txt"; // Dosya yolu örnektir, gerçek yolu kullanın.
+            RandevuEkle(dosyaYolu, yeniRandevu);
+
+            MessageBox.Show("Randevu başarıyla eklendi.");
+            button2_Click(sender, e);
+        }
+        private void RandevuEkle(string dosyaYolu, Randevu randevu)
+        {
+            using (StreamWriter sw = File.AppendText(dosyaYolu))
+            {
+                string randevuSatiri = $"{randevu.RandevuId}-{randevu.MusteriId}-{randevu.ServisId}-{randevu.CalisanId}-{randevu.RandevuTarihi:dd/MM/yyyy HH}";
+                sw.WriteLine(randevuSatiri);
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kullaniciSilme_Click(object sender, EventArgs e)
+        {
+            string dosyaYolu = @"C:\Users\binad\source\repos\NDP_PROJESII\Veriler\Randevular.txt"; // Dosya yolunu buraya ekleyin
+            string silinecekIdStr = SilinecekID.Text.Trim();
+
+            if (!int.TryParse(silinecekIdStr, out int silinecekId))
+            {
+                MessageBox.Show("Lütfen geçerli bir Randevu ID girin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                List<string> satirlar = File.ReadAllLines(dosyaYolu).ToList();
+                bool silindi = false;
+
+                for (int i = 0; i < satirlar.Count; i++)
+                {
+                    string[] veri = satirlar[i].Split('-');
+                    if (veri.Length > 0 && int.TryParse(veri[0].Trim(), out int randevuId) && randevuId == silinecekId)
+                    {
+                        satirlar.RemoveAt(i);
+                        silindi = true;
+                        break;
+                    }
+                }
+
+                if (silindi)
+                {
+                    File.WriteAllLines(dosyaYolu, satirlar);
+                    MessageBox.Show("Randevu ID başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Girilen Randevu ID bulunamadı.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

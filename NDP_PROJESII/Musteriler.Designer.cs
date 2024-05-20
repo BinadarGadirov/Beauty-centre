@@ -42,14 +42,11 @@
             this.txtTelefon = new System.Windows.Forms.TextBox();
             this.txtEposta = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.SilinecekID = new System.Windows.Forms.TextBox();
             this.kullaniciSilme = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // musteriGoruntule
@@ -181,24 +178,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Location = new System.Drawing.Point(528, 98);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(316, 100);
-            this.groupBox3.TabIndex = 18;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "groupBox3";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 16);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Kullanıcı IDsi";
-            // 
             // SilinecekID
             // 
             this.SilinecekID.Location = new System.Drawing.Point(991, 50);
@@ -215,16 +194,6 @@
             this.kullaniciSilme.Text = "Sil";
             this.kullaniciSilme.UseVisualStyleBackColor = true;
             this.kullaniciSilme.Click += new System.EventHandler(this.kullaniciSilme_Click_1);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(528, 21);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(316, 70);
-            this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
             // 
             // button1
             // 
@@ -244,8 +213,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.SilinecekID);
             this.Controls.Add(this.kullaniciSilme);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.musteriEkle);
@@ -255,8 +222,6 @@
             this.Load += new System.EventHandler(this.Musteriler_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,11 +243,9 @@
         private System.Windows.Forms.TextBox txtTelefon;
         private System.Windows.Forms.TextBox txtEposta;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox SilinecekID;
         private System.Windows.Forms.Button kullaniciSilme;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

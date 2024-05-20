@@ -37,7 +37,7 @@
             // musteriler
             // 
             this.musteriler.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.musteriler.Location = new System.Drawing.Point(558, 266);
+            this.musteriler.Location = new System.Drawing.Point(208, 76);
             this.musteriler.Name = "musteriler";
             this.musteriler.Size = new System.Drawing.Size(219, 61);
             this.musteriler.TabIndex = 0;
@@ -48,7 +48,7 @@
             // randevular
             // 
             this.randevular.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.randevular.Location = new System.Drawing.Point(558, 333);
+            this.randevular.Location = new System.Drawing.Point(208, 143);
             this.randevular.Name = "randevular";
             this.randevular.Size = new System.Drawing.Size(219, 61);
             this.randevular.TabIndex = 1;
@@ -59,7 +59,7 @@
             // hizmetler
             // 
             this.hizmetler.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hizmetler.Location = new System.Drawing.Point(558, 400);
+            this.hizmetler.Location = new System.Drawing.Point(208, 210);
             this.hizmetler.Name = "hizmetler";
             this.hizmetler.Size = new System.Drawing.Size(219, 61);
             this.hizmetler.TabIndex = 2;
@@ -70,7 +70,7 @@
             // calisanlar
             // 
             this.calisanlar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calisanlar.Location = new System.Drawing.Point(558, 467);
+            this.calisanlar.Location = new System.Drawing.Point(208, 277);
             this.calisanlar.Name = "calisanlar";
             this.calisanlar.Size = new System.Drawing.Size(219, 61);
             this.calisanlar.TabIndex = 3;
@@ -82,7 +82,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1335, 712);
+            this.ClientSize = new System.Drawing.Size(603, 433);
             this.Controls.Add(this.calisanlar);
             this.Controls.Add(this.hizmetler);
             this.Controls.Add(this.randevular);

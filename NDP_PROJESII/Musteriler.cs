@@ -1,4 +1,17 @@
-﻿using System;
+﻿                                 /****************************************************************************
+                                 **					SAKARYA ÜNİVERSİTESİ
+                                 **				BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ
+                                 **				    BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ
+                                 **				   NESNEYE DAYALI PROGRAMLAMA DERSİ
+                                 **					2023-2024 BAHAR DÖNEMİ
+                                 **	
+                                 **				ÖDEV NUMARASI..........: Proje 1
+                                 **				ÖĞRENCİ ADI............: Binadar Gadirov
+                                 **				ÖĞRENCİ NUMARASI.......: B221210561
+                                 **                         DERSİN ALINDIĞI GRUP...: 1.B
+                                 ****************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,16 +24,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NDP_PROJESII
+
 {
+    
     public partial class Musteriler : Form
     {
-        private string dosyaYolu = @"C:\Users\binad\Desktop\SAKIN AÇMA\ndpVERI.txt";
+        private string dosyaYolu = @"C:\Users\binad\source\repos\NDP_PROJESII\Veriler\Musteri.txt";
 
         public Musteriler()
         {
             InitializeComponent();
         }
-        public class Musteri
+        
+        public class Musteri 
         {
             public int Id { get; set; }
             public string Isim { get; set; }
@@ -59,6 +75,11 @@ namespace NDP_PROJESII
                 {
                     isMusterilerSection = true;
                     continue; // "Musteriler:" satırını atla
+                }
+                else if (satir.StartsWith(" "))
+                {
+                    isMusterilerSection = false;
+                    break;
                 }
 
                 if (isMusterilerSection && !string.IsNullOrWhiteSpace(satir))
@@ -102,7 +123,6 @@ namespace NDP_PROJESII
 
         private void Musteriler_Load(object sender, EventArgs e)
         {
-            musteriGoruntule_Click(sender, e);
         }
         private void MusteriEkle(string dosyaYolu, Musteri musteri)
         {
@@ -122,15 +142,15 @@ namespace NDP_PROJESII
             string eposta = txtEposta.Text;
 
             Musteri yeniMusteri = new Musteri(id, isim, soyisim, telefon, eposta);
-            string dosyaYolu = @"C:\Users\binad\Desktop\SAKIN AÇMA\ndpVERI.txt"; // Dosya yolu örnektir, gerçek yolu kullanın.
+            string dosyaYolu = @"C:\Users\binad\source\repos\NDP_PROJESII\Veriler\Musteri.txt"; // Dosya yolu örnektir, gerçek yolu kullanın.
             MusteriEkle(dosyaYolu, yeniMusteri);
 
             MessageBox.Show("Müşteri başarıyla eklendi.");
         }
         private void kullaniciSilme_Click_1(object sender, EventArgs e)
         {
-            
-            string dosyaYolu = @"C:\Users\binad\Desktop\SAKIN AÇMA\ndpVERI.txt"; // Dosya yolunu buraya ekleyin
+
+            string dosyaYolu = @"C:\Users\binad\source\repos\NDP_PROJESII\Veriler\Musteri.txt"; // Dosya yolunu buraya ekleyin
             string silinecekIdStr = SilinecekID.Text.Trim();
 
             if (!int.TryParse(silinecekIdStr, out int silinecekId))
@@ -219,17 +239,20 @@ namespace NDP_PROJESII
                     string[] richTextBoxSatirlar = richTextBox1.Text.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string richTextBoxSatiri in richTextBoxSatirlar)
                     {
-                        if (richTextBoxSatiri.StartsWith("ID:"))
+                        if (richTextBoxSatiri.StartsWith("Müşteriler:"))
                         {
-                            string[] veri = richTextBoxSatiri.Split(new[] { ", " }, StringSplitOptions.None);
-                            int id = int.Parse(veri[0].Split(new[] { ": " }, StringSplitOptions.None)[1].Trim());
-                            string isim = veri[1].Split(new[] { ": " }, StringSplitOptions.None)[1].Trim();
-                            string soyisim = veri[2].Split(new[] { ": " }, StringSplitOptions.None)[1].Trim();
-                            string telefon = veri[3].Split(new[] { ": " }, StringSplitOptions.None)[1].Trim();
-                            string email = veri[4].Split(new[] { ": " }, StringSplitOptions.None)[1].Trim();
+                            if (richTextBoxSatiri.StartsWith("ID:"))
+                            {
+                                string[] veri = richTextBoxSatiri.Split(new[] { ", " }, StringSplitOptions.None);
+                                int id = int.Parse(veri[0].Split(new[] { ": " }, StringSplitOptions.None)[1].Trim());
+                                string isim = veri[1].Split(new[] { ": " }, StringSplitOptions.None)[1].Trim();
+                                string soyisim = veri[2].Split(new[] { ": " }, StringSplitOptions.None)[1].Trim();
+                                string telefon = veri[3].Split(new[] { ": " }, StringSplitOptions.None)[1].Trim();
+                                string email = veri[4].Split(new[] { ": " }, StringSplitOptions.None)[1].Trim();
 
-                            Musteri musteri = new Musteri(id, isim, soyisim, telefon, email);
-                            yeniSatirlar.Add(musteri.ToFileString());
+                                Musteri musteri = new Musteri(id, isim, soyisim, telefon, email);
+                                yeniSatirlar.Add(musteri.ToFileString());
+                            }
                         }
                     }
 
